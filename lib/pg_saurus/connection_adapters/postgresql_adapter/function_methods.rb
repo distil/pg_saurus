@@ -26,6 +26,7 @@ module PgSaurus::ConnectionAdapters::PostgreSQLAdapter::FunctionMethods
       WHERE pg_catalog.pg_function_is_visible(p.oid)
             AND n.nspname <> 'pg_catalog'
             AND n.nspname <> 'information_schema'
+            AND p.proisagg <> true
       ORDER BY 1, 2, 3, 4;
     SQL
     res.inject([]) do |buffer, row|
